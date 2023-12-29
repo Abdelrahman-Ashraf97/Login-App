@@ -67,38 +67,25 @@ document.querySelector(".collector p a").addEventListener("click",function(){
   // ============================================ email Validation =================================================
   function emailValidation(){
     var emailRegex=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    var check=false;
+   
     if(emailRegex.test(emailInput.value)){
-      for(var i=0;i<accountList.length;i++){
-        if(accountList[i].email==emailInput.value){
-          emailInput.classList.add("is-invalid");
-          emailInput.classList.remove("is-valid");
-          document.querySelector(".email-text").classList.add("d-none");
-          document.querySelector(".email-text2").classList.remove("d-none");
-          check=false;
-          break;   
-        }
-        else{
+     
+        
           emailInput.classList.add("is-valid")
           emailInput.classList.remove("is-invalid")
           document.querySelector(".email-text").classList.add("d-none")
-          document.querySelector(".email-text2").classList.add("d-none");
-          check=true;
-        }
+          // document.querySelector(".email-text2").classList.add("d-none");
+         
       }
-        
-    }
-   
+      
     else{
         emailInput.classList.add("is-invalid")
         emailInput.classList.remove("is-valid")
         document.querySelector(".email-text").classList.remove("d-none")
-        document.querySelector(".email-text2").classList.add("d-none");
-        return emailRegex.test(emailInput.value);
-        
-      
+        // document.querySelector(".email-text2").classList.add("d-none");
+       
     }
-    return check;
+    return emailRegex.test(emailInput.value);
 
   }
   // ============================================ password Validation =================================================
