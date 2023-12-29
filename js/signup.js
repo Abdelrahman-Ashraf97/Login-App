@@ -65,29 +65,43 @@ document.querySelector(".collector p a").addEventListener("click",function(){
     return nameRegex.test(nameInput.value);
   }
   // ============================================ email Validation =================================================
-  function emailValidation(){
+   function emailValidation(){
+
     var emailRegex=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-   
+    var check=false;
     if(emailRegex.test(emailInput.value)){
-     
-        
+      for(var i=0;i<accountList.length;i++){
+        if(accountList[i].email== emailInput.value){
+          emailInput.classList.add("is-invalid");
+          emailInput.classList.remove("is-valid");
+          document.querySelector(".email-text").classList.add("d-none");
+          document.querySelector(".email-text2").classList.remove("d-none");
+          check=false;
+          break;   
+        }
+        else{
           emailInput.classList.add("is-valid")
           emailInput.classList.remove("is-invalid")
           document.querySelector(".email-text").classList.add("d-none")
-          // document.querySelector(".email-text2").classList.add("d-none");
-         
+          document.querySelector(".email-text2").classList.add("d-none");
+          check=true;
+        }
       }
-      
+        
+    }
+   
     else{
         emailInput.classList.add("is-invalid")
         emailInput.classList.remove("is-valid")
         document.querySelector(".email-text").classList.remove("d-none")
-        // document.querySelector(".email-text2").classList.add("d-none");
-       
+        document.querySelector(".email-text2").classList.add("d-none");
+        return false
+        
+      
     }
-    return emailRegex.test(emailInput.value);
+    return check;
 
-  }
+  } 
   // ============================================ password Validation =================================================
   function passwordValidation(){
     var passRegex=/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$/;
